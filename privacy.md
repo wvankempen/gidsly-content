@@ -12,7 +12,7 @@ by a natural person, not a limited-liability company.
 
 If you want to reach us about your data or this notice:
 
-- **Email:** info@gidsly.com
+- **Email:** privacy@gidsly.com
 
 We are the **data controller** for the personal data described in this notice.
 Any vendor helping us process your data (our **sub-processors**) is listed at
@@ -225,6 +225,6 @@ we can tell you which version you agreed to on which date.
 ## 12. Contact
 
 Any question about this notice, your data, or our practices, reach us at
-the contact in §1.
+privacy@gidsly.com.
 
 ---
