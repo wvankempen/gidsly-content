@@ -61,4 +61,4 @@ and Data Subject Request fulfilment.
 
 | Vendor | Period | Reason for replacement |
 |---|---|---|
-| **Vercel** | Pre-2026-05 | Hosting migrated to AWS Elastic Beanstalk for full EU-residency control and to consolidate compute, database, and storage with one EU-resident provider. |
+| Hosting migrated to AWS Elastic Beanstalk for full EU-residency control and to consolidate compute, database, and storage with one EU-resident provider. |
