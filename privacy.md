@@ -2,7 +2,7 @@
 
 ## 1. Who is responsible for your data?
 
-**Gidsly** is a registered tradename of **Van Kempen Ventures and Consultancy**, registered in the Netherlands. TEST1234566
+**Gidsly** is a registered tradename of **Van Kempen Ventures and Consultancy**, registered in the Netherlands. TEST123
 **Van Kempen Ventures and Consultancy** is a sole proprietorship under Dutch law, so Gidsly is operated
 by a natural person, not a limited-liability company.
 
