@@ -12,7 +12,7 @@ by a natural person, not a limited-liability company.
 
 If you want to reach us about your data or this notice:
 
-- **Email:** privacy@gidsly.com
+- **Email:** info@gidsly.com
 
 We are the **data controller** for the personal data described in this notice.
 Any vendor helping us process your data (our **sub-processors**) is listed at
@@ -137,8 +137,11 @@ We share personal data only with the sub-processors listed at
 the extent they need to provide their service to us. In plain language,
 those are:
 
-- **AWS** (Ireland), hosts our database, application servers, and file storage.
-- **Cloudflare**, handles DNS and serves the marketing site at gidsly.com.
+- **Render** (Frankfurt, Germany), hosts our application servers and
+  database.
+- **Cloudflare**, handles DNS, serves the Gidsly application at
+  app.gidsly.com (the frontend code, not your data), and serves the
+  marketing site at gidsly.com.
 - **Anthropic**, runs the AI that powers document tailoring and coaching.
 - **Zitadel** (EU), handles login and multi-factor authentication.
 - **Brevo** (France), sends transactional email and runs the support chat.
@@ -155,7 +158,7 @@ data brokers.
 ## 6. Where your data is processed
 
 The Gidsly team is based in the Netherlands. Our production data is stored
-in **Ireland** (AWS `eu-west-1`).
+in **Germany** (Render, Frankfurt region).
 
 Some subprocessors are based in the United States. Where that's the case,
 we rely on the **EU–US Data Privacy Framework** and **Standard Contractual
@@ -225,6 +228,6 @@ we can tell you which version you agreed to on which date.
 ## 12. Contact
 
 Any question about this notice, your data, or our practices, reach us at
-privacy@gidsly.com.
+the contact in §1.
 
 ---
