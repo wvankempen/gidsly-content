@@ -54,13 +54,3 @@ behalf and therefore do not appear on the subprocessor list:
   with the end date.
 - Any change here is a material change to the privacy notice; users are
   notified.
-
-## Historical
-
-Vendors previously used to process Gidsly user data. Kept for audit
-and Data Subject Request fulfilment.
-
-| Vendor | Period | Reason for replacement |
-|---|---|---|
-| **Amazon Web Services (AWS)** | 2026-04 to 2026-05-18 | Hosted the application backend (Elastic Beanstalk) and database (RDS PostgreSQL) in the Ireland (`eu-west-1`) region. Migrated to Render (Frankfurt) on 2026-05-18 after a series of platform-level deploy-stability incidents on EB made it unsuitable for production at Gidsly's scale. All user data was migrated and the AWS environment was decommissioned with a final snapshot retained. |
-| **Vercel** | Pre-2026-04 | Original hosting provider. Migrated to AWS Elastic Beanstalk in April 2026 for EU-residency control and to consolidate compute and database with one provider. (AWS itself was subsequently replaced by Render in May 2026 — see row above.) |
