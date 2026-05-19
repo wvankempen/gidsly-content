@@ -149,6 +149,11 @@ those are:
   connect one.
 - **ElevenLabs**, generates the synthetic voice for Gidsly's spoken
   responses.
+- **Sentry** (Germany), receives error reports if Gidsly hits an
+  unexpected problem in your browser or our backend — so we can
+  notice bugs and fix them. Error reports may contain technical
+  details (the code path that failed, the URL you were on); we don't
+  deliberately include your account data.
 - **GitHub** and **Google Fonts**, serve the legal pages and the typefaces
   used on the marketing site.
 
