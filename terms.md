@@ -124,8 +124,9 @@ Violations may result in account suspension or termination.
 
 ## 10. Third-party services
 
-Gidsly connects to third-party services (e.g. Anthropic for AI, Nylas
-for email/calendar, ElevenLabs for voice). The full list is at
+Gidsly connects to third-party services (e.g. Anthropic for AI,
+Nylas for email and calendar, LinkedIn for optional profile import,
+PostHog for product analytics). The full list is at
 [gidsly.com/subprocessors](https://gidsly.com/subprocessors). When you use
 those integrations you are also subject to the relevant third party's terms.
 

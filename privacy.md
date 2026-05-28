@@ -59,9 +59,6 @@ removed these in April 2026 because they weren't essential to the service.
   We do **not** auto-import your whole address book.
 - **Conversations** you have with Gidsly's AI features (document tailoring,
   coaching, wellness support), stored as text.
-- **Voice input.** If you speak to Gidsly, your speech is converted to text
-  immediately and the **raw audio is discarded**. We never retain audio
-  recordings.
 
 ### 3.4 When you connect an email or calendar
 
@@ -78,6 +75,19 @@ If you choose to connect your email / calendar via **Nylas**:
   device type, pages visited, times of action. Used for security and
   debugging.
 - **Errors**, logged to our infrastructure for debugging.
+- **Product analytics and session recordings** via **PostHog**
+  (EU-hosted). We capture page views, click events, and a defined list
+  of named milestone events (such as "signed in", "onboarding
+  completed", "application created") tied to your account so we can
+  understand how the product is actually used and fix UX problems.
+  Session recordings replay your screen interactions (clicks, scrolls,
+  form fills) with privacy masking: every `<input>` field and any
+  element we explicitly mark as sensitive are masked in the playback,
+  so passwords and free-text personal answers are not visible in
+  replays. We honour the **Do-Not-Track** browser signal — if your
+  browser sends it, PostHog does not start. You can also email us
+  (see §1) to ask us to disable session recordings for your account
+  going forward.
 
 ### 3.6 When you chat with us
 
@@ -90,24 +100,47 @@ The widget does not load on logged-out pages.
 
 ### 3.7 When you import your LinkedIn profile (optional)
 
-If you choose to import your LinkedIn profile into your Gidsly
-Essence, we ask **LinkedIn** for a copy of your own profile data on
-your behalf, using LinkedIn's Member Data Portability API under the
-EU Digital Markets Act.
+If you choose to connect LinkedIn from onboarding or from your
+Account Settings, we use **LinkedIn**'s Member Data Portability API
+under the EU Digital Markets Act to pull a copy of your own profile
+on your behalf.
 
-What we receive: headline, summary, work experience, education,
-skills, certifications, and languages. We do **not** receive your
-connections, messages, posts, endorsements, or recommendations.
+**What we receive from LinkedIn:**
 
-What we do with it: show you a preview, let you edit anything, and
-save the result into your Essence as your own editable content. The
-LinkedIn access token we use to fetch the data is held in memory for
-the duration of the import only and is never stored.
+- *Always when you connect:* first name, last name, headline,
+  professional summary, geographic location, full address, postal
+  code, work experience (positions), education, skills,
+  certifications, languages.
+- *Only when you create a new journey at a specific company:* the
+  subset of your LinkedIn connections who work at that company —
+  name, current company, position, and profile URL. We surface them
+  in the journey wizard so you can choose which to add as
+  stakeholders for that journey. We do not pull or store anyone
+  else's data.
 
-This import is entirely optional; you can build your Essence
-manually and never connect LinkedIn. If you do connect and later
-change your mind, the imported data becomes your Essence content
-and can be edited or deleted at any time like everything else.
+**What we do with it:** we fill your Gidsly Essence (career profile)
+using a "fill blanks only" rule — anything you've already typed
+yourself stays exactly as you wrote it, and only empty fields get
+filled from LinkedIn. You can review and edit every imported field
+before completing onboarding, and at any time afterwards.
+
+**About the access tokens:** to enable the re-sync and contact-
+suggestion features, LinkedIn's OAuth access and refresh tokens are
+stored **encrypted at rest** in our database (Render, Frankfurt),
+using the PostgreSQL `pgcrypto` extension and a server-side key
+that is not present in any backup or log. We never display the
+tokens in the app.
+
+**What we do NOT receive:** your messages, posts, endorsements,
+recommendations, activity feed, or organisation/pages data.
+
+**Disconnecting:** you can disconnect LinkedIn at any time from
+**Account Settings → Connected Accounts**. Disconnect immediately
+soft-deletes the OAuth row, revokes our ability to re-fetch, and
+stops the contact-suggestion flow from looking at your network.
+The profile data already in your Essence stays as your own editable
+content; the cached snapshot stays for audit unless you also request
+deletion via §8. Account deletion removes everything together.
 
 ### 3.8 What we do NOT collect
 
@@ -147,8 +180,12 @@ those are:
 - **Brevo** (France), sends transactional email and runs the support chat.
 - **Nylas**, provides the connection to your email and calendar, when you
   connect one.
-- **ElevenLabs**, generates the synthetic voice for Gidsly's spoken
-  responses.
+- **LinkedIn** (Microsoft Ireland), source of the optional profile
+  import and the company-specific connection suggestions in the
+  journey wizard.
+- **PostHog** (EU), receives product-analytics events and session
+  recordings (with privacy masking) so we can understand product use
+  and fix UX problems.
 - **Sentry** (Germany), receives error reports if Gidsly hits an
   unexpected problem in your browser or our backend — so we can
   notice bugs and fix them. Error reports may contain technical
@@ -177,8 +214,10 @@ EU-region processing.
 | Your account and profile | For as long as your account is active. Deleted ~30 days after you close it (grace period for accidental deletions), then permanently. |
 | Job applications, todos, documents | Same as the account. |
 | AI conversation history | Kept indefinitely by default; you can delete individual conversations at any time. |
-| Voice input | Raw audio is discarded immediately after transcription. |
 | Email content cached from Nylas | About an hour, then discarded. |
+| LinkedIn-cached connections (used for journey contact suggestions) | Refreshed weekly; older entries replaced on refresh. Removed entirely on LinkedIn disconnect or account deletion. |
+| Product-analytics events (PostHog) | Per PostHog's default retention (currently up to 7 years for events). |
+| Session recordings (PostHog) | Per PostHog's default retention (currently 1 month). |
 | Error logs | 90 days. |
 | Audit logs (security events about your account) | Deleted together with your account. |
 | Consent records | Kept while the account is active, and for the legally required period afterwards to prove we obtained valid consent. |
