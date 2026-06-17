@@ -87,7 +87,11 @@ If you choose to connect your email / calendar via **Nylas**:
   replays. We honour the **Do-Not-Track** browser signal — if your
   browser sends it, PostHog does not start. You can also email us
   (see §1) to ask us to disable session recordings for your account
-  going forward.
+  going forward. Analytics requests are routed through
+  `app.gidsly.com/ph/*` (a reverse proxy on our own infrastructure)
+  before reaching PostHog's EU servers. This makes the request appear
+  first-party so that browser ad blockers do not silently drop it; the
+  data, the recipient and the DPA remain unchanged.
 
 ### 3.6 When you chat with us
 
