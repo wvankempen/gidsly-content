@@ -146,7 +146,38 @@ The profile data already in your Essence stays as your own editable
 content; the cached snapshot stays for audit unless you also request
 deletion via §8. Account deletion removes everything together.
 
-### 3.8 What we do NOT collect
+### 3.8 When you subscribe to Premium
+
+If you choose to subscribe to Gidsly Premium (or start the free
+trial), payment is processed by **Mollie B.V.** in Amsterdam:
+
+- **What Mollie receives:** your email address, first and last name,
+  your chosen plan and interval (monthly or annual), and an internal
+  Gidsly user reference so we can match the payment back to your
+  account. Your card or bank-account details are entered on
+  Mollie's hosted checkout page and live with Mollie. **Gidsly
+  never sees and never stores your card number, IBAN, or any other
+  payment instrument data.**
+- **What we receive back from Mollie:** the subscription state
+  (created, trialing, active, past_due, canceled, expired), the
+  Mollie customer and subscription identifiers, and the amount and
+  currency of each charge. We mirror this in our own database so
+  the in-app Subscription view reflects your real billing state.
+- **Receipts and mandate confirmations** are sent by Mollie directly
+  to your email under Mollie's own privacy notice. Gidsly may also
+  send you billing-related emails (trial ending in 3 days, payment
+  failed, downgrade notice) via Brevo.
+- **Cancellation, refunds, chargebacks** are processed by Mollie at
+  our request and mirrored back to our database via the same
+  webhook channel.
+- We keep **billing records (invoices, payment receipts, subscription
+  history)** for **7 years** because Dutch tax law (Article 52 AWR)
+  requires it. This data survives account deletion: when you delete
+  your account we erase your personal-data records but retain the
+  billing line items in a tax-archive form for the required period.
+  See §7 for the full retention table.
+
+### 3.9 What we do NOT collect
 
 - No tracking cookies beyond what's needed to run the site.
 - No advertising pixels.
@@ -158,10 +189,12 @@ deletion via §8. Account deletion removes everything together.
 | Purpose | Legal basis (GDPR Art. 6) |
 |---|---|
 | Providing the service you signed up for (storing your profile, applications, etc.) | Performance of a contract |
+| Processing a Premium subscription (charging, receipts, cancellation, refunds) | Performance of a contract |
 | Keeping the service secure and preventing abuse | Legitimate interest |
-| Sending service-related messages (password resets, security alerts) | Performance of a contract |
+| Sending service-related messages (password resets, security alerts, billing notices) | Performance of a contract |
 | Sending marketing emails (when and if we offer them) | **Consent**: opt-in only; always optional |
-| Complying with legal obligations (tax records, incident reporting) | Legal obligation |
+| Keeping billing records for the required period | Legal obligation (Dutch tax law, 7 years) |
+| Complying with other legal obligations (incident reporting, etc.) | Legal obligation |
 | Improving Gidsly (aggregated analytics, anonymised feedback) | Legitimate interest |
 
 We do not process **special category data** (as defined by GDPR Art. 9).
@@ -191,10 +224,14 @@ those are:
   recordings (with privacy masking) so we can understand product use
   and fix UX problems.
 - **Sentry** (Germany), receives error reports if Gidsly hits an
-  unexpected problem in your browser or our backend — so we can
+  unexpected problem in your browser or our backend, so we can
   notice bugs and fix them. Error reports may contain technical
   details (the code path that failed, the URL you were on); we don't
   deliberately include your account data.
+- **Mollie** (Amsterdam), processes payments for Premium subscriptions
+  when you subscribe or upgrade. Card and bank-account details are
+  entered on Mollie's hosted checkout page and stay with Mollie;
+  Gidsly never sees them.
 - **GitHub** and **Google Fonts**, serve the legal pages and the typefaces
   used on the marketing site.
 
@@ -225,6 +262,7 @@ EU-region processing.
 | Error logs | 90 days. |
 | Audit logs (security events about your account) | Deleted together with your account. |
 | Consent records | Kept while the account is active, and for the legally required period afterwards to prove we obtained valid consent. |
+| Billing records (invoices, payment receipts, subscription history) | **7 years** (Dutch tax law, Article 52 AWR). Retained in a tax-archive form even after account deletion. Personal-data fields beyond what tax law requires are minimised. |
 
 ## 8. Your rights
 
